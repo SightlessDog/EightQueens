@@ -42,25 +42,25 @@ public class Chessboard {
         i++;
     }
 
-    public boolean threateningQueen() {
+    public void threateningQueen() {
         for (int i = 0; i < cols; i++) {
-            for (int j = 0; j < cols; j++) {
-                if (queens[i][1] == queens[j][1]) {
+            for (int j = i+1 ; j < cols; j++) {
+                if (queens[i][1] == queens[j][1] && array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat = true;
                     break;
-                } else if (queens[i][0] == queens[j][0]) {
+                } else if (queens[i][0] == queens[j][0] && array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] + 1)) {
+                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] + 1) && array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] - 1)) {
+                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] - 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] - 1)) {
+                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] - 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] + 1)) {
+                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] + 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
                 } else {
@@ -68,10 +68,8 @@ public class Chessboard {
                     break ;
                 }
             }
-            if (threat ) {
-                break;
-            }
+
         }
-       return threat ;
+        System.out.println(threat);
     }
 }
