@@ -42,34 +42,51 @@ public class Chessboard {
         i++;
     }
 
-    public void threateningQueen() {
-        for (int i = 0; i < cols; i++) {
-            for (int j = i+1 ; j < cols; j++) {
-                if (queens[i][1] == queens[j][1] && array[queens[j][0]][queens[j][1]]=="[0]") {
+    public boolean threateningQueen(String[][] array, int col, int row ) {
+        int i, j ;
+        for (i = 0; i < cols; i++) {
+            // for (int j = 0 ; j < cols; j++) {
+              /*  if (queens[i][1] == queens[j][1] && array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat = true;
                     break;
                 } else if (queens[i][0] == queens[j][0] && array[queens[j][0]][queens[j][1]]=="[0]") {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] + 1) && array[queens[j][0]][queens[j][1]]=="[0]") {
+                } else if ((queens[i][1] == (queens[j][1] + 1)) && (queens[i][0] == (queens[j][0] + 1)) && (array[queens[j][0]][queens[j][1]]=="[0]" && array[queens[i][0]][queens[i][1]]=="[0]")) {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] - 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
+                } else if ((queens[i][1] == (queens[j][1] - 1)) && (queens[i][0] == (queens[j][0] - 1)) && (array[queens[j][0]][queens[j][1]]=="[0]" && array[queens[i][0]][queens[i][1]]=="[0]")) {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] + 1) && (queens[i][0] == queens[j][0] - 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
+                } else if ((queens[i][1] == (queens[j][1] + 1)) && (queens[i][0] == (queens[j][0] - 1))&& (array[queens[j][0]][queens[j][1]]=="[0]" && array[queens[i][0]][queens[i][1]]=="[0]")) {
                     threat =true;
                     break ;
-                } else if ((queens[i][1] == queens[j][1] - 1) && (queens[i][0] == queens[j][0] + 1)&& array[queens[j][0]][queens[j][1]]=="[0]") {
+                } else if ((queens[i][1] == (queens[j][1] - 1)) && (queens[i][0] == (queens[j][0] + 1))&& (array[queens[j][0]][queens[j][1]]=="[0]" && array[queens[i][0]][queens[i][1]]=="[0]")) {
                     threat =true;
                     break ;
                 } else {
                     threat =false;
-                    break ;
+                } */
+            //check if they have the same row
+            if (queens[i][1] == row) {
+                return false;
+            }
+        }
+            //diagonal left side
+            for (i = col , j = row ; i>=0 && j>=0 ; i-- , j-- ) {
+                if (array [i][j] == "[0]"){
+                    return false ;
                 }
             }
 
-        }
-        System.out.println(threat);
+            //diagonal left side down
+            for (i=col , j=row ; j<rows && i>=0 ; j++ ,i-- ) {
+                if (array[i][j] == "[0]"){
+                    return false ;
+                }
+            }
+
+            //otherwise, there is no threatening queen return true
+            return true ;
     }
 }
