@@ -45,8 +45,11 @@ public class Main {
         currentState = states.pop();
         // termination condition
         if (currentState.queenCounter >= numQueens) {
-            currentState.printChess();
-            if (uniqueSolution(currentState)) solutions.add(currentState);
+
+            if (uniqueSolution(currentState)) {
+                currentState.printChess();
+                solutions.add(currentState);
+            }
             return;
         }
 
@@ -67,7 +70,7 @@ public class Main {
                         board = new Chessboard(stateCopy);
                         // continue search with this state
                         search();
-                        
+
                     }
 
                 }
