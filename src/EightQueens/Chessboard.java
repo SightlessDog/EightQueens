@@ -41,6 +41,7 @@ public class Chessboard {
         for (int i = 0; i < cols; i++) {
             // set to a negative flag
             queens[i][1] = -1;
+            queens[i][0] = -1;
         }
         make();
     }
@@ -120,6 +121,19 @@ public class Chessboard {
 
         //diagonal left side up
         for (i = col, j = row; i >= 0 && j >= 0; i--, j--) {
+            if (array[i][j] == "[0]") {
+                return true;
+            }
+        }
+
+        //diagonal right side up
+        for (i = col, j = row; i < cols && j >=0; i++, j--) {
+            if (array[i][j] == "[0]") {
+                return true;
+            }
+        }
+        //diagonal right side down
+        for (i = col, j = row; i < cols && j < rows; i++, j++) {
             if (array[i][j] == "[0]") {
                 return true;
             }

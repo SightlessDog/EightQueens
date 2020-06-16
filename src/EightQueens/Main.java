@@ -11,25 +11,25 @@ public class Main {
     static Stack<Chessboard> states = new Stack();
     static Chessboard board;
     static int numQueens = 8;
+    static ArrayList<Chessboard> solutions = new ArrayList<>();
 
     public static void main(String[] args) {
-        /*Chessboard board = new Chessboard(8, 8);
-        // TODO THIS SHOWS THAT THE CHECK IS NOT WORKING. I CAN PLACE A QUEEN DIAGONALLY TO THE LEFT BUT NOT THE RIGHT
-        board.addQueen(2, 0);
-        if (!board.threateningQueen(board.array, 4, 1)) {
-            board.addQueen(4, 1);
+        Chessboard board = new Chessboard(8, 8);
+        board.addQueen(2, 1);
+        if (!board.threateningQueen(board.array, 1, 0)) {
+            board.addQueen(1, 0);
         }
-        if (!board.threateningQueen(board.array, 5, 0)) {
-            board.addQueen(5, 1);
+        if (!board.threateningQueen(board.array, 1, 2)) {
+            board.addQueen(1, 2);
         }
-        if (!board.threateningQueen(board.array, 3, 1)){
-            board.addQueen(3, 1);
+        if (!board.threateningQueen(board.array, 3, 0)) {
+            board.addQueen(3, 0);
         }
-        board.printChess();*/
+        board.printChess();
         search();
+        printSolutions();
 
     }
-
 
 
     static void search() {
@@ -44,44 +44,53 @@ public class Main {
         // get last one from stack
         currentState = states.pop();
         // termination condition
-        if (board.queenCounter >= numQueens) {
-            board.printChess();
+        if (currentState.queenCounter >= numQueens) {
+            currentState.printChess();
+            if (uniqueSolution(currentState)) solutions.add(currentState);
             return;
         }
 
-        for (int x = 0; x < currentState.cols; x++) {
-            for (int y = 0; y < currentState.rows; y++) {
+        for (int y = 0; y < currentState.rows; y++) {
+            for (int x = 0; x < currentState.cols; x++) {
 
                 // check if empty
-                //if (currentState.isEmpty(x, y)) {
+                if (currentState.isEmpty(x, y)) {
                     // create copy
                     Chessboard stateCopy = new Chessboard(currentState);
                     // if it is empty add a queen
                     // now check if the state has any threats
 
-                    if (!stateCopy.threateningQueen(stateCopy.array,x,y)){
-                        System.out.println("x : "+ x + "y : "+y);
-                        stateCopy.addQueen(x,y);
-                        stateCopy.printChess();
+                    if (!stateCopy.threateningQueen(stateCopy.array, x, y)) {
+                        stateCopy.addQueen(x, y);
                         // if it doesn't then save state
                         states.push(stateCopy);
                         board = new Chessboard(stateCopy);
                         // continue search with this state
                         search();
-                        return;
+                        
                     }
 
-                //}
+                }
 
             }
 
         }
 
-        // if I have searched all fields and there is nothing
-        if (!states.isEmpty()) {
-            search();
-        }
-
-        System.out.println("No possible option for "+numQueens+" Queens ");
     }
+
+    static boolean uniqueSolution(Chessboard state) {
+        for (Chessboard C : solutions) {
+            if (java.util.Arrays.deepEquals(state.array, C.array)) return false;
+        }
+        return true;
+    }
+
+    static void printSolutions() {
+        for (Chessboard C : solutions) {
+            C.printChess();
+        }
+        System.out.println("Problem has " + solutions.size() + "unique solutions");
+    }
+
 }
+
