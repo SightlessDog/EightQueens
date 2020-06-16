@@ -30,7 +30,7 @@ public class Chessboard {
 
 
     public Point randomPos() {
-        return new Point((int) (Math.random() * 8), (int) (Math.random() * 8));
+        return new Point((int) (Math.random() * cols), (int) (Math.random() * rows));
     }
 
     public Chessboard(int cols, int rows) {
@@ -88,16 +88,16 @@ public class Chessboard {
 
 
     String[][] deepCopy(String[][] source) {
-        String[][] dest = new String[8][8];
-        for (int i = 0; i < 8; i++) {
+        String[][] dest = new String[cols][rows];
+        for (int i = 0; i < cols; i++) {
             dest[i] = Arrays.copyOf(source[i], source[i].length);
         }
         return dest;
     }
 
     int[][] deepCopy(int[][] source) {
-        int[][] dest = new int[8][8];
-        for (int i = 0; i < 8; i++) {
+        int[][] dest = new int[cols][rows];
+        for (int i = 0; i < cols; i++) {
             dest[i] = Arrays.copyOf(source[i], source[i].length);
         }
         return dest;
