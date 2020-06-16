@@ -11,8 +11,6 @@ public class Main {
     static Stack<Chessboard> states = new Stack();
     static Chessboard board;
     static int numQueens = 8;
-    static int x  = 0 ;
-    static int y =0 ;
 
     public static void main(String[] args) {
         /*Chessboard board = new Chessboard(8, 8);
@@ -50,7 +48,10 @@ public class Main {
             board.printChess();
             return;
         }
-                while (x<currentState.cols && y<currentState.rows) {
+
+        for (int x = 0; x < currentState.cols; x++) {
+            for (int y = 0; y < currentState.rows; y++) {
+
                 // check if empty
                 //if (currentState.isEmpty(x, y)) {
                     // create copy
@@ -69,12 +70,10 @@ public class Main {
                         search();
                         return;
                     }
-                    x++ ;
-                    y++;
+
                 //}
 
-
-                }
+            }
 
         }
 
@@ -85,4 +84,4 @@ public class Main {
 
         System.out.println("No possible option for "+numQueens+" Queens ");
     }
-
+}
