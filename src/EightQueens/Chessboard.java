@@ -29,9 +29,9 @@ public class Chessboard {
     }
 
 
-    public Point randomPos() {
+    /*public Point randomPos() {
         return new Point((int) (Math.random() * cols), (int) (Math.random() * rows));
-    }
+    }*/
 
     public Chessboard(int cols, int rows) {
         this.cols = cols;
@@ -116,7 +116,9 @@ public class Chessboard {
             }
         }
 
-        //diagonal left side
+
+
+        //diagonal left side up
         for (i = col, j = row; i >= 0 && j >= 0; i--, j--) {
             if (array[i][j] == "[0]") {
                 return true;
